@@ -1,0 +1,100 @@
+﻿
+
+
+
+
+@{
+    Layout = null;
+}
+
+<div class="container" id="dvData">
+    <div id="tblItem"></div>
+</div>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/rochePCD-theme.css" rel="stylesheet" />
+
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<link href="~/Scripts/ParamGrid/pqgrid.min.css" rel="stylesheet" />
+<link href="~/Scripts/ParamGrid/pqgrid.ui.min.css" rel="stylesheet" />
+<script src="~/Scripts/ParamGrid/pqgridpro2.min.js"></script>
+<script src="~/Scripts/ParamGrid/pq-localize-en.js"></script>
+<script src="~/Scripts/ParamGrid/touch-punch.min.js"></script>
+<script src="~/Scripts/ParamGrid/InitializePCDGrids/InitializeGrids.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/addNodes.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/copyPaste.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/deleteNodes.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/ModifyRow.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/newRoot.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/renameLabel.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/ToggleNodes.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/Undo.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/UndoAddNodes.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/undoLeftNode.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/UndoRightNode.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/UndoTakeNodeDown.js"></script>
+<script src="~/Scripts/ParamGrid/ModifyBomSectionGrid/UndoTakeNodeUp.js"></script>
+<script src="~/Scripts/ParamGrid/RowNavigations/nodeDown.js"></script>
+<script src="~/Scripts/ParamGrid/RowNavigations/nodeUp.js"></script>
+<script src="~/Scripts/ParamGrid/RowNavigations/NodeRight.js"></script>
+<script src="~/Scripts/ParamGrid/RowNavigations/nodeLeft.js"></script>
+
+
+
+
+
+<div>
+    
+    <div class="pcdDetailGrid" id="dvPCDDetailGrids">
+        <h3 class="bomHeading">Bill of Materials <button class="btn btn-primary pull-right" onclick="$('#instructions').slideToggle()">Instructions</button></h3>
+        
+        <p id="instructions" style="display:none">Press Add button to Add Row. Check Single Row or all with header checkbox and press Copy to Copy Row and Press Paste Button to Paste Row. Check row and press delete 
+        to Delete Row. Check and press left button to take row Level left . Check and press right button to take row level right . Row get upto
+        3 level only to the right. Check and press up to take row up with its child and press down to take down with child. pressh undo to make undone changes . Toggle level with Dropdown.</p>
+        <div class="pcdGridBox" id="dvScrollPackaging">
+            <div class="gridfilter">
+                <div class="headerContent">
+                    <div class="textcontainer">
+
+                    </div>
+                    <div class="rightIconcontainer">
+                        <div id="ulPackagingButtons">
+
+                            <ul class="iconList gridIconcontainer">
+                                <li class="gridicons gridIconlist" title="Add "><button type="button" id="btnAddPackagingRow"><span class="iconsprite copyIcon gridCopyIcon">Add</span></button> </li>
+                                <li class="gridicons gridIconlist" title="Copy "><button type="button" id="btnCopyPackagingRow"><span class="iconsprite copyIcon gridCopyIcon">Copy</span></button> </li>
+                                <li class="gridicons gridIconlist" title="Paste "><button type="button" hidebtn="hidebtn" id="btnPastePackagingRow"><span class="iconsprite pasteIcon gridpasteIcon">Paste</span></button></li>
+                                <li class="gridicons gridIconlist" title="Delete "><button type="button" hidebtn="hidebtn" id="btnDeletePackagingRow"><span class="iconsprite deleteIcon griddeleteIcon">Delete</span></button></li>
+                                <li class="gridicons gridIconlist" title="Take Left"><button type="button" hidebtn="hidebtn" id="btnLeftPackagingRow"><span class="iconsprite arrowleftIcon gridarrowleftIcon">Left</span></button></li>
+                                <li class="gridicons gridIconlist" title="Take Right"><button type="button" hidebtn="hidebtn" id="btnRightPackagingRow"><span class="iconsprite arrowrightIcon gridarrowrightIcon">Right</span></button></li>
+                                <li class="gridicons gridIconlist" title="Take Up"><button type="button" hidebtn="hidebtn" id="btnUpPackagingRow"><span class="iconsprite arrowupIcon gridarrowupIcon">Up</span></button></li>
+                                <li class="gridicons gridIconlist" title="Take Down"><button type="button" hidebtn="hidebtn" id="btnDownPackagingRow"><span class="iconsprite arrowdownIcon gridarrowdownIcon">Down</span></button></li>
+                                <li class="gridicons gridIconlist" title="Undo"><button type="button" hidebtn="hidebtn" id="btnUndoRow"><span class="iconsprite arrowdownIcon gridarrowdownIcon">Undo</span></button></li>
+                            </ul>
+                            <div class="levelSelect"><select id="btnTogglePackagingRow" title="Show/Hide Level"><option value="showAll">Show All</option><option value="0">Hide L2 & L3</option><option value="1">Hide L3</option></select></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="dbPCDComponent packagingtbl" id="dvTogglePackagingGrid">
+                <div id="packagingGrid"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<script>
+    //used in bom section grid initiallization
+    var FINISHIED_GOODS = 'FINISHIED_GOODS';
+ 
+    fnInitializeGrid("packagingGrid", "", "", "");
+</script>
+
+
+
+
